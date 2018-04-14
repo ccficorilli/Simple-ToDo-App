@@ -1,41 +1,100 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  background: #136a8a; /* fallback for old browsers */
+  margin: auto;
+  padding: 1%;
+  font-family: 'Raleway';
+  
+  background: #136a8a;
+  /* fallback for old browsers */
   background: -webkit-linear-gradient(to left, #b3e6eb, #6281c9);
   background: linear-gradient(to left, #b3e6eb, #6281c9);
 }
-
 .no-padding {
   padding: 0 !important;
 }
-
 .no-margin {
   margin: 0 !important;
 }
-
 .white {
   color: white !important;
 }
-
 .strike-through {
   text-decoration: line-through;
 }
-
 textarea {
   width: 100%;
   max-width: 100%;
-  min-height: 8em;
+  min-height: 1em;
   max-height: 16em;
+  transition: 1s;
 }
-
+textarea:focus {
+  min-height: 8em;
+}
 strong + small {
-    display: block;
+  display: block;
 }
-
 input[type=checkbox] {
   margin-right: 1em;
 }
-
 div.pull-right a {
   margin-left: 1em;
+}
+/* ---------------------------- */
+.container {
+  padding: 2%;
+  border: 1px black solid;
+}
+.header {
+  border: 1px solid black;
+  line-height: .5;
+  border-bottom: 1px white solid;
+  color: #f3f3f3;
+  margin: auto auto 10px auto;
+  width: 100%;
+}
+h1 {
+  font-size: 4vw;
+}
+p {
+  font-size: 1.75vw;
+}
+.body-container {
+  display: flex;
+  width: 100%;
+  margin: auto;
+  border: 1px solid black;
+}
+.unneeded-div {
+  width: 100%;
+  display: flex;
+}
+.addTodos {
+  background-color: white;
+  display: inline-flex; 
+  width: 35%;
+  border: 1px solid black;
+  border-radius: 6px;
+  margin: 10px;
+  padding-top: 1%;
+}
+.viewTodos {
+  background-color: white;  
+  width: 65%;
+  display: inline-flex;
+  border: 1px solid black;
+  border-radius: 6px;
+  margin: 10px;
+  padding-top: 1%;
+}
+.todo-header,
+.todo-footer,
+.todo-textbox,
+.todo-select,
+textarea,
+select {
+  margin: auto; 
+  padding: 3px;
+  width: 100%;
+  border-bottom: #eeeeee 1px solid;
 }
