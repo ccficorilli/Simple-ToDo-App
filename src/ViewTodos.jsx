@@ -17,16 +17,16 @@ class viewTodos extends Component {
                             value.firstRun >= 1 
                             ? 
                             value.map(dataSet =>
-                            // <TodoItems
-                            // id={ dataSet.id }
-                            // priority={ dataSet.priority }
-                            // todo={ dataSet.todo }
-                            // />
+                            <TodoItems
+                            id={ dataSet.id }
+                            priority={ dataSet.priority }
+                            todo={ dataSet.todo }
+                            />
                             console.log(dataSet))
                             :
                             <div className='well w-100 todoListed'>Welcome to Very Simple Todo App!
                                 <p>Get started now by adding a new todo on the left.</p>
-                            </div>;
+                            </div>
                             }
                         }
                         </div>

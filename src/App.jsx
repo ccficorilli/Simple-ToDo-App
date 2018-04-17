@@ -3,6 +3,7 @@ import AddTodos from './AddTodos';
 // import ViewTodos from './ViewTodos';
 import todoList from './Todos/savedTodos.json';
 import TodoItems from './TodoItems';
+import EmptyTodos from './EmptyTodos';
 
 // const todoList = []
 class App extends Component {
@@ -15,20 +16,19 @@ class App extends Component {
     // this.displayTodos = this.displayTodos.bind(this);
   }
   componentWillMount() {
-    // this.setState({
-    //   todoList
-    // });
+    this.setState({
+      todoList
+    })
+    // this.displayTodoList;
   }
   // displayTodoList() {
-  //   if (this.state.todoList.length !== 0 || undefined) {
-  //     this.state.todoList.map(data => (
-  //       <div className={ `well w-100 todoListed ${data.priority}` }>
-  //         <input type='checkbox' value='on' />{data.todo}
-  //       </div>));
-  //   }
-  //   return (<div className='well w-100 todoListed'>Welcome to Very Simple Todo App!
-  //                   <p>Get started now by adding a new todo on the left.</p>
-  //     </div>);
+  //   let buildTheList;
+  //   if (this.state.todoList.length === 0) {
+  //    buildTheList = <EmptyTodos />;
+  //    return buildTheList;
+  //   }buildTheList = this.state.todoList.map(props => <TodoItems />);
+  //    console.log(typeof buildTheList);
+  //    return buildTheList;
   //   }
 
   render() {
@@ -43,17 +43,16 @@ class App extends Component {
           <div className='col-sm-8 p-3'>
             <div className='viewTodos bg-light w-100'>
               <div className='panel mt-1 mb-1 p-2 pl-3 bg-custom txt-sm'>View To-Do:</div>
-              <div className='holding-cell w-100 rounded'>
+              
                 <TodoItems
-                  todos={ this.state.todoList }
-                  quantity={ this.state.todoList.length}
-                  
+                   todos={this.state.todoList}
                 />
-              </div>
+              
             </div>
           </div>
         </div>
       </div>
+
     );
   }
 }
