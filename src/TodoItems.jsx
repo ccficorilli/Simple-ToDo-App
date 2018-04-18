@@ -6,8 +6,6 @@ class TodoItems extends Component {
     }
     
     render(){
-        // console.log(props);
-        
         if(this.props.todos.length > 0) {
             return <div className='holding-cell w-100 rounded'>
                         <ul className= 'well w-100 todoListed'>        
@@ -15,7 +13,8 @@ class TodoItems extends Component {
                             (<li className={`'${data.priority} well w-100'`} 
                                key={data.entry}>
                                 <input type='checkbox' 
-                                       value={data.checked} 
+                                       value={data.value}
+                                       key={Math.random()}
                                 />{data.todo}
                                 <div className='btn-holder'>Buttons Go Here</div>
                             </li>)

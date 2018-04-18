@@ -3,12 +3,16 @@ import AddTodos from './AddTodos';
 import ViewTodos from './ViewTodos';
 // import todoList from './Todos/savedTodos.json';
 var todoList = [];
-var temp = {
-  "todo":"",
-  "key":"",
-  "priority":"",
-  "complete":false
-};
+// var nnn = { 
+//   key: Date.now(),
+//   priority: '',
+//   todo: '',
+//   value: 'off'
+// }
+var todo;
+var key;
+var priority;
+var value = 'off';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -23,23 +27,28 @@ class App extends Component {
     //this.state.todoList is saved to file for app exit
   }
   updateTodoValue(e){
-    temp.todo = e.target.value
+    todo = e.target.value
   }
   updatePriority(e){    
-    temp.priority = e.target.value    
+    priority = e.target.value    
   }
   clickHandler() {
-    temp.key = Date.now();
-    const l = this.state.todoList.length;
-    todoList.push(temp)
-    
-    this.setState({    
-        todoList
-    },console.log(this.state.todoList));
+    var newTodo = {
+      key: Date.now(),
+      priority,
+      todo,
+      value
+  }
+    this.setState((prevState) => {
+      return { 
+        todoList: prevState.todoList.concat(newTodo) 
+      };
+    }, () => (todoList = this.state.todoList));
+   
   }
   
   render() {
-    
+    console.log(todoList)
     return (
       <div className='container'>
         <div className='header'>
