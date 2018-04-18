@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
 class AddTodos extends Component {
+    constructor(props){
+        super(props)
 
+    }
     render() {
         return (
 
@@ -10,11 +13,16 @@ class AddTodos extends Component {
                 <div className='panel mt-1 mb-1 p-2 bg-custom brd-btm-cst text-left txt-sm'>Add New To-Do:</div>
                 <div className='txt-sm-b row m-1 pl-2 pr-2'>I want to...</div>
                 <div className='row m-1 p-2 .textarea'>
-                    <textarea className='create-todo-text'/>
+                    <textarea className='create-todo-text'
+                              defaultValue=''
+                              onChange={e => this.props.updateTodoValue(e)}
+                    />
                 </div>
                 <div className='txt-sm-b row m-1 pl-2 pr-2'>How much of a priority is it?</div>
                 <div className='row m-1 p-2'>
-                    <select className='create-todo-priority' defaultValue=''>
+                    <select className='create-todo-priority' 
+                            defaultValue=''
+                            onChange = {e => this.props.updatePriority(e)}>
                         <option value='' disabled>Select a Priority</option>
                         <option value='1'>High Priority</option>
                         <option value='2'>Medium Priority</option>
@@ -23,7 +31,7 @@ class AddTodos extends Component {
                     </select>
                 </div>  
                 <div className='panel my-1 mx-auto p-2 brd-top-cst'>
-                   <button type='submit' onClick={ this.addNewTodo }>Add To-Do</button>
+                   <button type='submit' onClick={this.props.clickHandler }>Add To-Do</button>
                 </div>
             </div>
         </div>

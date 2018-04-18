@@ -2,7 +2,7 @@ import React from 'react';
 
 export default (props) => {
   (<div className='well w-100 todoListed'>Welcome to Very Simple Todo App!
-     <p>Get started now by adding a new todo on the left.</p>{console.log(props)}
+     <p>Get started now by adding a new todo on the left.</p>
    </div>)}
 
    
