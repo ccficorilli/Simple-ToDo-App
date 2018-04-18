@@ -1,37 +1,45 @@
 import React, { Component } from 'react';
 import AddTodos from './AddTodos';
-// import ViewTodos from './ViewTodos';
-import todoList from './Todos/savedTodos.json';
-import TodoItems from './TodoItems';
-
-// const todoList = []
+import ViewTodos from './ViewTodos';
+// import todoList from './Todos/savedTodos.json';
+var todoList = [];
+var temp = {
+  "todo":"",
+  "key":"",
+  "priority":"",
+  "complete":false
+};
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      todoList: []
+      todoList
     };
-    // this.displayTodos = this.displayTodos.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
   }
-  componentWillMount() {
-    // this.setState({
-    //   todoList
-    // });
+  componentDidUpdate(){
+    //this is where the {updateJSONfile} function will go so that 
+    //this.state.todoList is saved to file for app exit
   }
-  // displayTodoList() {
-  //   if (this.state.todoList.length !== 0 || undefined) {
-  //     this.state.todoList.map(data => (
-  //       <div className={ `well w-100 todoListed ${data.priority}` }>
-  //         <input type='checkbox' value='on' />{data.todo}
-  //       </div>));
-  //   }
-  //   return (<div className='well w-100 todoListed'>Welcome to Very Simple Todo App!
-  //                   <p>Get started now by adding a new todo on the left.</p>
-  //     </div>);
-  //   }
-
+  updateTodoValue(e){
+    temp.todo = e.target.value
+  }
+  updatePriority(e){    
+    temp.priority = e.target.value    
+  }
+  clickHandler() {
+    temp.key = Date.now();
+    const l = this.state.todoList.length;
+    todoList.push(temp)
+    
+    this.setState({    
+        todoList
+    },console.log(this.state.todoList));
+  }
+  
   render() {
+    
     return (
       <div className='container'>
         <div className='header'>
@@ -39,19 +47,14 @@ class App extends Component {
           <p className='title'>Track all of the things</p>
         </div>
         <div className='row p-2 body-base'>
-          <AddTodos />
-          <div className='col-sm-8 p-3'>
-            <div className='viewTodos bg-light w-100'>
-              <div className='panel mt-1 mb-1 p-2 pl-3 bg-custom txt-sm'>View To-Do:</div>
-              <div className='holding-cell w-100 rounded'>
-                <TodoItems
-                  todos={ this.state.todoList }
-                  quantity={ this.state.todoList.length}
-                  
-                />
-              </div>
-            </div>
-          </div>
+          <AddTodos 
+            updateTodoValue={this.updateTodoValue}
+            updatePriority={this.updatePriority}
+            clickHandler={this.clickHandler}
+          />
+          <ViewTodos
+            todos={this.state.todoList}
+          />
         </div>
       </div>
     );
