@@ -18,7 +18,9 @@ class TodoItems extends Component {
                                        onChange={e => this.props.updateCheckbox(e)}
                                 />
                                 <span className={data.done}>{data.todo}</span>
-                                <div className='btn-holder'>Buttons Go Here</div>
+                                <input value={`${i}' delete'`}className='delete' type='image' src='.\img\if_close_32391.png' />
+                                <input value={`${i}' edit'`}className='edit' type='image' src='.\img\if_edit_172462.png' />
+                                
                             </li>)
                         )}
                         </ul>

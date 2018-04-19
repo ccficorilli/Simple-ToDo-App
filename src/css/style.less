@@ -104,7 +104,6 @@ button:active {
   border: #808080 2px solid;
   border-radius: 8px;
 }
-// ------------------------------
 .bucket {
   min-height: 20px;
   padding: 10px;
@@ -128,9 +127,25 @@ ul {
 .todoListed p {
   font-weight: 400;
 }
-.btn-holder {
+.delete,
+.edit {
+  opacity: .6;
+  max-height: 20px;
+  max-width: 20px;
   display: flex;
   float: right;
+}
+.edit {
+  margin-right: 10px;
+}
+.delete:focus,
+.edit:focus {
+  outline: none;
+}
+.delete:hover,
+.edit:hover {
+  /* box-shadow: 1px 1px 2px #4b4b4b, 0 0 25px #fa4444, 0 0 5px #702323; */
+  opacity: 1;
 }
 .bg1 {
   background-color: #f7b1b1;
