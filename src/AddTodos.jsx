@@ -7,7 +7,6 @@ class AddTodos extends Component {
     }
     render() {
         return (
-
             <div className='col-sm-4 p-3'>
                 <div className='addTodos bg-light w-100'>
                 <div className='panel mt-1 mb-1 p-2 bg-custom brd-btm-cst text-left txt-sm'>Add New To-Do:</div>
@@ -31,7 +30,9 @@ class AddTodos extends Component {
                     </select>
                 </div>  
                 <div className='panel my-1 mx-auto p-2 brd-top-cst'>
-                   <button type='submit' onClick={this.props.clickHandler }>Add To-Do</button>
+                   <button className ='create-todo' 
+                           type='submit' 
+                           onClick={this.props.clickHandler }>Add To-Do</button>
                 </div>
             </div>
         </div>

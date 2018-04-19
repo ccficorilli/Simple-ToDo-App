@@ -12,7 +12,7 @@ var todoList = [];
 var todo;
 var key;
 var priority;
-var value = 'off';
+var done
 class App extends Component {
   constructor(props) {
     super(props);
@@ -21,6 +21,8 @@ class App extends Component {
       todoList
     };
     this.clickHandler = this.clickHandler.bind(this);
+    this.updateCheckbox = this.updateCheckbox.bind(this);
+
   }
   componentDidUpdate(){
     //this is where the {updateJSONfile} function will go so that 
@@ -32,18 +34,35 @@ class App extends Component {
   updatePriority(e){    
     priority = e.target.value    
   }
+  updateCheckbox(e){
+    // console.log(e.target.checked)
+    // console.log(todoList)
+    
+    var i = e.target.value;
+    console.log(typeof e.target.checked)
+    if(e.target.checked){
+      todoList[i].done = 'strike-through';
+      this.setState({
+        todoList
+     });
+    } else 
+      todoList[i].done = '';
+      this.setState({
+        todoList
+     });
+};
   clickHandler() {
     var newTodo = {
       key: Date.now(),
       priority,
       todo,
-      value
-  }
+      done
+    }
     this.setState((prevState) => {
       return { 
         todoList: prevState.todoList.concat(newTodo) 
       };
-    }, () => (todoList = this.state.todoList));
+    }, () => (todoList.push(newTodo)),console.log(todoList));
    
   }
   
@@ -63,6 +82,7 @@ class App extends Component {
           />
           <ViewTodos
             todos={this.state.todoList}
+            updateCheckbox={this.updateCheckbox}
           />
         </div>
       </div>

@@ -9,13 +9,15 @@ class TodoItems extends Component {
         if(this.props.todos.length > 0) {
             return <div className='holding-cell w-100 rounded'>
                         <ul className= 'well w-100 todoListed'>        
-                        {this.props.todos.map( data => 
-                            (<li className={`'${data.priority} well w-100'`} 
-                               key={data.entry}>
+                        {this.props.todos.map( (data, i) => 
+                            (<li className={`success bg${data.priority} bucket w-100 `} 
+                               key={data.entry}>                               
                                 <input type='checkbox' 
-                                       value={data.value}
-                                       key={Math.random()}
-                                />{data.todo}
+                                       key={i}
+                                       value={i}
+                                       onChange={e => this.props.updateCheckbox(e)}
+                                />
+                                <span className={data.done}>{data.todo}</span>
                                 <div className='btn-holder'>Buttons Go Here</div>
                             </li>)
                         )}

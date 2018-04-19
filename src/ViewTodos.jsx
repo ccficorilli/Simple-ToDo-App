@@ -14,6 +14,7 @@ class viewTodos extends Component {
                     <div className='panel mt-1 mb-1 p-2 pl-3 bg-custom txt-sm'>View To-Do's:</div>
                     <TodoItems
                         todos={this.props.todos}
+                        updateCheckbox={this.props.updateCheckbox}
                     />
                 </div>
             </div>
