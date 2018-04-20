@@ -9,10 +9,10 @@ var todoList = [];
 //   todo: '',
 //   value: 'off'
 // }
-var todo;
+var todo = '';
 var key;
 var priority;
-var done
+var done = false;
 class App extends Component {
   constructor(props) {
     super(props);
@@ -22,17 +22,31 @@ class App extends Component {
     };
     this.clickHandler = this.clickHandler.bind(this);
     this.updateCheckbox = this.updateCheckbox.bind(this);
-
+    this.deleteTodos = this.deleteTodos.bind(this);
   }
-  componentDidUpdate(){
+  componentWillMount(){
+    () => this.AddTodos.textarea.defaultValue = '';
     //this is where the {updateJSONfile} function will go so that 
     //this.state.todoList is saved to file for app exit
+    
   }
   updateTodoValue(e){
     todo = e.target.value
   }
   updatePriority(e){    
     priority = e.target.value    
+  }
+  deleteTodos(e){
+    if (confirm("Are you sure you want to delete this?")) {
+      var i = e.target.value;
+      // console.log(i)
+      // console.log(todoList)
+      todoList.splice(i,1);
+      this.setState({
+        todoList
+      })
+      // console.log(todoList.length)
+    }
   }
   updateCheckbox(e){
     // console.log(e.target.checked)
@@ -50,7 +64,7 @@ class App extends Component {
       this.setState({
         todoList
      });
-};
+  };
   clickHandler() {
     var newTodo = {
       key: Date.now(),
@@ -58,15 +72,21 @@ class App extends Component {
       todo,
       done
     }
-    this.setState((prevState) => {
-      return { 
-        todoList: prevState.todoList.concat(newTodo) 
-      };
-    }, () => (todoList.push(newTodo)),console.log(todoList));
-   
+    // if(newTodo.todo === undefined || ''){
+    //   return alert('Please submit a to do...');
+    // } else 
+    if(newTodo.todo ==  '') {
+        return alert('Please submit a to do...')
+    } if(newTodo.priority === undefined || '') {
+        return alert('Please submit a priority with your to do...')    
+    } this.setState((prevState) => {
+        return { 
+          todoList: prevState.todoList.concat(newTodo)
+        };      
+      }, () => todoList.push(newTodo));
   }
-  
-  render() {
+
+render() {
     console.log(todoList)
     return (
       <div className='container'>
@@ -79,10 +99,12 @@ class App extends Component {
             updateTodoValue={this.updateTodoValue}
             updatePriority={this.updatePriority}
             clickHandler={this.clickHandler}
+            todoList={todoList}
           />
           <ViewTodos
             todos={this.state.todoList}
             updateCheckbox={this.updateCheckbox}
+            deleteTodos={this.deleteTodos}
           />
         </div>
       </div>

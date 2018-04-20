@@ -7,7 +7,7 @@ class TodoItems extends Component {
     
     render(){
         if(this.props.todos.length > 0) {
-            return <div className='holding-cell w-100 rounded'>
+            return (<div className='holding-cell w-100 rounded'>
                         <ul className= 'well w-100 todoListed'>        
                         {this.props.todos.map( (data, i) => 
                             (<li className={`success bg${data.priority} bucket w-100 `} 
@@ -18,14 +18,18 @@ class TodoItems extends Component {
                                        onChange={e => this.props.updateCheckbox(e)}
                                 />
                                 <span className={data.done}>{data.todo}</span>
-                                <input value={`${i}' delete'`}className='delete' type='image' src='.\img\if_close_32391.png' />
-                                <input value={`${i}' edit'`}className='edit' type='image' src='.\img\if_edit_172462.png' />
+                                <input value={i}
+                                       className='delete' 
+                                       type='image' 
+                                       src='.\img\if_close_32391.png'
+                                       onClick={e => this.props.deleteTodos(e)} />
+                                <input value={i}className='edit' type='image' src='.\img\if_edit_172462.png' />
                                 
                             </li>)
                         )}
                         </ul>
                     </div>
-            }
+            )}
             return (<div className='well w-100 todoListed'>Welcome to Very Simple Todo App!
                     <p>Get started now by adding a new todo on the left.</p>
                     </div>);

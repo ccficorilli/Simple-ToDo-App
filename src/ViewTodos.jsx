@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import TodoItems from './TodoItems';
+import EditBox from './EditBox'
 
-
-class viewTodos extends Component {
+class ViewTodos extends Component {
     constructor(props) {        
         super(props)
     
@@ -12,13 +12,15 @@ class viewTodos extends Component {
             <div className='col-sm-8 p-3'>
                 <div className='viewTodos bg-light w-100'>
                     <div className='panel mt-1 mb-1 p-2 pl-3 bg-custom txt-sm'>View To-Do's:</div>
+                    <EditBox />
                     <TodoItems
                         todos={this.props.todos}
                         updateCheckbox={this.props.updateCheckbox}
+                        deleteTodos={this.props.deleteTodos}
                     />
                 </div>
             </div>
         );
     } 
 }   
-export default viewTodos;
+export default ViewTodos;

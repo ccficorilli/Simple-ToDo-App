@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+var textValue = '';
 class AddTodos extends Component {
     constructor(props){
         super(props)
@@ -15,14 +15,16 @@ class AddTodos extends Component {
                     <textarea className='create-todo-text'
                               defaultValue=''
                               onChange={e => this.props.updateTodoValue(e)}
+                              required
+                              
                     />
                 </div>
                 <div className='txt-sm-b row m-1 pl-2 pr-2'>How much of a priority is it?</div>
                 <div className='row m-1 p-2'>
                     <select className='create-todo-priority' 
-                            defaultValue=''
-                            onChange = {e => this.props.updatePriority(e)}>
-                        <option value='' disabled>Select a Priority</option>
+                            onChange = {e => this.props.updatePriority(e)}
+                            defaultValue='0'>
+                        <option value='0' disabled>Select a Priority</option>
                         <option value='1'>High Priority</option>
                         <option value='2'>Medium Priority</option>
                         <option value='3'>Low Priority</option>
