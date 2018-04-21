@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AddTodos from './AddTodos';
 import ViewTodos from './ViewTodos';
+import EditBox from './EditBox';
 // import todoList from './Todos/savedTodos.json';
 var todoList = [];
 // var nnn = { 
@@ -13,6 +14,7 @@ var todo = '';
 var key;
 var priority;
 var done = false;
+var isEditable = [false,undefined];
 class App extends Component {
   constructor(props) {
     super(props);
@@ -23,9 +25,9 @@ class App extends Component {
     this.clickHandler = this.clickHandler.bind(this);
     this.updateCheckbox = this.updateCheckbox.bind(this);
     this.deleteTodos = this.deleteTodos.bind(this);
+    this.editTodos = this.editTodos.bind(this);
   }
-  componentWillMount(){
-    () => this.AddTodos.textarea.defaultValue = '';
+  componentDidMount(){
     //this is where the {updateJSONfile} function will go so that 
     //this.state.todoList is saved to file for app exit
     
@@ -36,24 +38,36 @@ class App extends Component {
   updatePriority(e){    
     priority = e.target.value    
   }
+ 
   deleteTodos(e){
     if (confirm("Are you sure you want to delete this?")) {
       var i = e.target.value;
-      // console.log(i)
-      // console.log(todoList)
       todoList.splice(i,1);
       this.setState({
         todoList
-      })
-      // console.log(todoList.length)
+      });
     }
+  }  
+  editTodos(e) {
+    
+      var i = Number(e.target.value);
+      var editCheck = todoList.filter(data => data.isEditable[0] === true);
+      console.log ({editCheck}.length)
+      if(editCheck.length === 0){
+        todoList[i].isEditable = [true, i]
+        this.setState({
+          todoList
+        });
+      // } else console.log(this.props.todos);
+      //   
+    } alert('Only one edit at a time, please')
   }
   updateCheckbox(e){
     // console.log(e.target.checked)
     // console.log(todoList)
     
     var i = e.target.value;
-    console.log(typeof e.target.checked)
+    // console.log(typeof e.target.checked)
     if(e.target.checked){
       todoList[i].done = 'strike-through';
       this.setState({
@@ -70,7 +84,8 @@ class App extends Component {
       key: Date.now(),
       priority,
       todo,
-      done
+      done,
+      isEditable
     }
     // if(newTodo.todo === undefined || ''){
     //   return alert('Please submit a to do...');
@@ -105,6 +120,7 @@ render() {
             todos={this.state.todoList}
             updateCheckbox={this.updateCheckbox}
             deleteTodos={this.deleteTodos}
+            editTodos={this.editTodos}
           />
         </div>
       </div>

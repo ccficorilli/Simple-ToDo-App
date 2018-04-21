@@ -13,11 +13,10 @@ class AddTodos extends Component {
                 <div className='txt-sm-b row m-1 pl-2 pr-2'>I want to...</div>
                 <div className='row m-1 p-2 .textarea'>
                     <textarea className='create-todo-text'
-                              defaultValue=''
                               onChange={e => this.props.updateTodoValue(e)}
                               required
                               
-                    />
+                    ></textarea>
                 </div>
                 <div className='txt-sm-b row m-1 pl-2 pr-2'>How much of a priority is it?</div>
                 <div className='row m-1 p-2'>

@@ -8,15 +8,12 @@ class EditBox extends Component {
     render(){
         return (<div className='edit-box holding-cell w-100 rounded'>
                     <div className='well w-100 todoListed'>Description
-                        <textarea name="edit" id="" cols="auto" rows="auto"></textarea>
+                        <textarea name="edit" id="" cols="auto" rows="auto" defaultValue={this.props.text}></textarea>
                     </div>
                     <div className='well w-100 todoListed'>Priority
                         <div>
-                        <select className='edit-todo-priority' 
-                                defaultValue=''
-                                // onChange = {e => this.props.updatePriority(e)}
-                                >
-                            <option value='' disabled>Select a Priority</option>
+                        <select className='edit-todo-priority'>
+                            <option value='0' disabled>Select a Priority</option>
                             <option value='1'>High Priority</option>
                             <option value='2'>Medium Priority</option>
                             <option value='3'>Low Priority</option>

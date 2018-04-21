@@ -23,7 +23,11 @@ class TodoItems extends Component {
                                        type='image' 
                                        src='.\img\if_close_32391.png'
                                        onClick={e => this.props.deleteTodos(e)} />
-                                <input value={i}className='edit' type='image' src='.\img\if_edit_172462.png' />
+                                <input value={i}
+                                       className='edit' 
+                                       type='image' 
+                                       src='.\img\if_edit_172462.png'
+                                       onClick={e => this.props.editTodos(e)} />
                                 
                             </li>)
                         )}
