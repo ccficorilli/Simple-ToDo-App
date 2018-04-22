@@ -4,13 +4,9 @@ import ViewTodos from './ViewTodos';
 import EditBox from './EditBox';
 // import todoList from './Todos/savedTodos.json';
 var todoList = [];
-// var nnn = { 
-//   key: Date.now(),
-//   priority: '',
-//   todo: '',
-//   value: 'off'
-// }
 var todo = '';
+var epriority;
+var etodo ='';
 var key;
 var priority;
 var done = false;
@@ -26,6 +22,7 @@ class App extends Component {
     this.updateCheckbox = this.updateCheckbox.bind(this);
     this.deleteTodos = this.deleteTodos.bind(this);
     this.editTodos = this.editTodos.bind(this);
+    this.submitEdit = this.submitEdit.bind(this);
   }
   componentDidMount(){
     //this is where the {updateJSONfile} function will go so that 
@@ -38,7 +35,12 @@ class App extends Component {
   updatePriority(e){    
     priority = e.target.value    
   }
- 
+  editTodoValue(e){
+    etodo = e.target.value
+  }
+  editPriorityValue(e){    
+    epriority = e.target.value    
+  }
   deleteTodos(e){
     if (confirm("Are you sure you want to delete this?")) {
       var i = e.target.value;
@@ -49,25 +51,28 @@ class App extends Component {
     }
   }  
   editTodos(e) {
-    
       var i = Number(e.target.value);
       var editCheck = todoList.filter(data => data.isEditable[0] === true);
-      console.log ({editCheck}.length)
+      // console.log ({editCheck}.length)
       if(editCheck.length === 0){
-        todoList[i].isEditable = [true, i]
+        todoList[i].isEditable = [true, i];
         this.setState({
           todoList
         });
-      // } else console.log(this.props.todos);
-      //   
-    } alert('Only one edit at a time, please')
+    } alert('Remember --only one edit at a time, please')
+  }
+  submitEdit(e){
+    var i = e.target.value;
+    todoList[i].todo = etodo;
+    todoList[i].priority = epriority;
+    todoList[i].isEditable = [false, undefined]
+    this.setState({
+      todoList
+    }, () => etodo = '', () => epriority=0 )
+
   }
   updateCheckbox(e){
-    // console.log(e.target.checked)
-    // console.log(todoList)
-    
     var i = e.target.value;
-    // console.log(typeof e.target.checked)
     if(e.target.checked){
       todoList[i].done = 'strike-through';
       this.setState({
@@ -87,9 +92,6 @@ class App extends Component {
       done,
       isEditable
     }
-    // if(newTodo.todo === undefined || ''){
-    //   return alert('Please submit a to do...');
-    // } else 
     if(newTodo.todo ==  '') {
         return alert('Please submit a to do...')
     } if(newTodo.priority === undefined || '') {
@@ -98,11 +100,11 @@ class App extends Component {
         return { 
           todoList: prevState.todoList.concat(newTodo)
         };      
-      }, () => todoList.push(newTodo));
+      }, () => todoList.push(newTodo), () => todo = '', () => priority = 0, () => console.log(todo,priority));
   }
 
 render() {
-    console.log(todoList)
+    // console.log(todoList)
     return (
       <div className='container'>
         <div className='header'>
@@ -114,13 +116,17 @@ render() {
             updateTodoValue={this.updateTodoValue}
             updatePriority={this.updatePriority}
             clickHandler={this.clickHandler}
-            todoList={todoList}
+            text={todo}
+            priority={priority}
           />
           <ViewTodos
+            editPriorityValue={this.editPriorityValue}
+            editTodoValue={this.editTodoValue}
             todos={this.state.todoList}
             updateCheckbox={this.updateCheckbox}
             deleteTodos={this.deleteTodos}
             editTodos={this.editTodos}
+            submitEdit={this.submitEdit}
           />
         </div>
       </div>

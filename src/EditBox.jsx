@@ -8,21 +8,30 @@ class EditBox extends Component {
     render(){
         return (<div className='edit-box holding-cell w-100 rounded'>
                     <div className='well w-100 todoListed'>Description
-                        <textarea name="edit" id="" cols="auto" rows="auto" defaultValue={this.props.text}></textarea>
+                        <textarea name='edit' 
+                                  cols='auto' 
+                                  rows='auto' 
+                                  defaultValue={this.props.text}
+                                  onChange={e => this.props.editTodoValue(e)}>
+                        </textarea>
                     </div>
                     <div className='well w-100 todoListed'>Priority
                         <div>
-                        <select className='edit-todo-priority'>
+                        <select className='edit-todo-priority' 
+                                defaultValue={this.props.priority}
+                                onChange={e => this.props.editPriorityValue(e)}>
                             <option value='0' disabled>Select a Priority</option>
                             <option value='1'>High Priority</option>
                             <option value='2'>Medium Priority</option>
                             <option value='3'>Low Priority</option>
                             <option value='4'>Not Really Sure</option>
                         </select>
-                        <input type='image' className='save-btn' src='./img/check-plus.png' />
+                        <input type='image' 
+                               className='save-btn' 
+                               src='./img/check-plus.png'
+                               value={this.props.value}
+                               onClick={e => this.props.submitEdit(e)} />
 
-                        {/* <div className='save-btn-holder'>
-                        </div> */}
                         </div>
                     </div>
                 </div>)}

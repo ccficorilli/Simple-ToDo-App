@@ -11,19 +11,22 @@ class ViewTodos extends Component {
         // let index;
         const editProgress = this.props.todos.filter(data => 
             data.isEditable[0] === true);
-        // let i = this.props.todos.findIndex(editProgress)
-        //  console.log({index})
-         console.log({editProgress})
+        //  console.log({editProgress})
         if(editProgress[0] !== undefined){
+            var editIndex = editProgress[0].isEditable[1];
+            // console.log({editIndex});
            
-            return ( <div className='col-sm-8 p-3'>
+            return (<div className='col-sm-8 p-3'>
                         <div className='viewTodos bg-light w-100'>
                             <div className='panel mt-1 mb-1 p-2 pl-3 bg-custom txt-sm'>View To-Do's:</div>
                             <EditBox
-                               text={editProgress.todo}
-                               value={editProgress[1]}
-                               priority={editProgress.priority}
-                               todos={this.props.todos}
+                                submitEdit={this.props.submitEdit}
+                                editPriorityValue={this.props.editPriorityValue}
+                                editTodoValue={this.props.editTodoValue}
+                                text={editProgress[0].todo}
+                                value={editProgress[0].isEditable[1]}
+                                priority={editProgress[0].priority}
+                                todos={this.props.todos}
                             /> 
                             <TodoItems
                                 todos={this.props.todos}
