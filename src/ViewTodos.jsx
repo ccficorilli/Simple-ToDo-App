@@ -8,14 +8,9 @@ class ViewTodos extends Component {
     }
     
     render() {
-        // let index;
-        const editProgress = this.props.todos.filter(data => 
+        const editProgress = this.props.todoList.filter(data => 
             data.isEditable[0] === true);
-        //  console.log({editProgress})
         if(editProgress[0] !== undefined){
-            var editIndex = editProgress[0].isEditable[1];
-            // console.log({editIndex});
-           
             return (<div className='col-sm-8 p-3'>
                         <div className='viewTodos bg-light w-100'>
                             <div className='panel mt-1 mb-1 p-2 pl-3 bg-custom txt-sm'>View To-Do's:</div>
@@ -26,14 +21,14 @@ class ViewTodos extends Component {
                                 text={editProgress[0].todo}
                                 value={editProgress[0].isEditable[1]}
                                 priority={editProgress[0].priority}
-                                todos={this.props.todos}
+                                todoList={this.props.todoList}
                             /> 
                             <TodoItems
-                                todos={this.props.todos}
+                                todoList={this.props.todoList}
                                 updateCheckbox={this.props.updateCheckbox}
                                 deleteTodos={this.props.deleteTodos}
                                 editTodos={this.props.editTodos}
-                    />
+                            />
                 </div>
             </div>)
         } return (
@@ -41,7 +36,7 @@ class ViewTodos extends Component {
                 <div className='viewTodos bg-light w-100'>
                     <div className='panel mt-1 mb-1 p-2 pl-3 bg-custom txt-sm'>View To-Do's:</div>
                     <TodoItems
-                        todos={this.props.todos}
+                        todoList={this.props.todoList}
                         updateCheckbox={this.props.updateCheckbox}
                         deleteTodos={this.props.deleteTodos}
                         editTodos={this.props.editTodos}

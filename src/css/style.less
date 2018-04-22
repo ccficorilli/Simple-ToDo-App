@@ -127,23 +127,28 @@ ul {
 .todoListed p {
   font-weight: 400;
 }
-.delete,
-.edit {
+.checkbox {
+  max-height: 20px;
+  max-width: 20px;
+  display: inline-flex;
+  float: left;
+}
+.delete-todo,
+.edit-todo {
   opacity: .5;
   max-height: 20px;
   max-width: 20px;
-  display: flex;
-  float: right;
+  display: inline-flex;
 }
-.edit {
+.edit-todo {
   margin-right: 10px;
 }
-.delete:focus,
-.edit:focus {
+.delete-todo:focus,
+.edit-todo:focus {
   outline: none;
 }
-.delete:hover,
-.edit:hover {
+.delete-todo:hover,
+.edit-todo:hover {
   /* box-shadow: 1px 1px 2px #4b4b4b, 0 0 25px #fa4444, 0 0 5px #702323; */
   opacity: 1;
 }
@@ -164,25 +169,31 @@ ul {
   padding-left: 4px;
   padding-right: 4px;
   width: 50px;
-  float: right;  
-  margin-right: 20px; 
+  float: right;
+  margin-right: 20px;
   display: flex;
   opacity: .6;
-
 }
 .save-btn-holder {
   width: auto;
   height: 50px;
- }
- .save-btn:focus {
+}
+.save-btn:focus {
   outline: none;
- }
- .save-btn:hover {
-   opacity: 1;
- }
-  .edit-todo-priority {
-   width: 40%;
- }
-/* .edit-box {
-  visibility: hidden;
-} */
+}
+.save-btn:hover {
+  opacity: 1;
+}
+.update-todo-priority {
+  width: 40%;
+}
+.wrap-text {
+  display: inline-flex;
+  max-width: 75%;
+}
+.btn-holder {
+  max-width: 50px;
+  max-height: 20px;
+  display: flex;
+  float: right;
+}
