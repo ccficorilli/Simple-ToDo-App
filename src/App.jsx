@@ -131,7 +131,7 @@ render() {
     return (
       <div className='container'>
         <div className='header'>
-          <h1>Very Simple To Do App</h1>
+          <h1>Not-So Simple To Do App</h1>
           <p className='title'>Track all of the things</p>
         </div>
         <div className='row p-2 body-base'>
