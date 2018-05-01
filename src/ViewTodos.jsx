@@ -9,7 +9,7 @@ class ViewTodos extends Component {
     
     render() {
         const editProgress = this.props.todoList.filter(data => 
-            data.isEditable[0] === true);
+            data.isEditable[0]);
         if(editProgress[0] !== undefined){
             return (<div className='col-sm-8 p-3'>
                         <div className='viewTodos bg-light w-100'>

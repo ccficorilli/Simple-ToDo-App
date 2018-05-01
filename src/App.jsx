@@ -73,7 +73,7 @@ class App extends Component {
           etodo: todoList[i].todo,
           epriority: todoList[i].priority
         });
-    } alert('Remember --only one edit at a time, please')
+    } else alert('Remember --only one edit at a time, please')
   }
   submitEdit(e){
     var todoList = this.state.todoList;
